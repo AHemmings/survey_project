@@ -3,7 +3,9 @@
     <ul class="collection with-header">
       <li class="collection-header"><h4>Surveys</h4></li>
       <!-- list surveys -->
-      <li class="collection-item">Survey 1</li>
+      <%@surveys.each do |survey|%>
+      <li class="collection-item"><%= link_to survey.name , survey %></li>
+      <% end %>
     </ul>
 
     <div class="row">

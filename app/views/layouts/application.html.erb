@@ -8,8 +8,14 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+    <%# load the js file depending on the path and the available variables %>
+    <%=  (request.original_url ==root_url + "surveys/new" || request.original_url ==root_url + "surveys" ) ? ( javascript_pack_tag 'form.js', 'data-turbolinks-track': 'reload') : nil %>
+    <%=  (@survey && request.original_url ==root_url + "surveys/#{@survey.id}/survey_questions/new" )? (javascript_pack_tag 'question.js', 'data-turbolinks-track': 'reload') : nil %>
+    <%=  (@survey && @question && request.original_url ==root_url + "surveys/#{@survey.id}/survey_questions/#{@question.id}/edit") ? ( javascript_pack_tag 'edit_single_question.js', 'data-turbolinks-track': 'reload'): nil %>
+
+
     <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href=" https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   </head>
@@ -23,6 +29,20 @@
         </ul>
       </div>
     </nav>
+
+    <%# display the errors%>
+      <%if flash[:errors] && !flash[:errors].empty? %> 
+          <div class="error center card red" >
+              <h2> <%= pluralize(flash[:errors].count, "error") %> prohibited this action: </h2>
+              <ul class="card-content">
+                  <% flash[:errors].each_with_index do |msg, index| %>
+                    <li><%=index + 1%>. <%= msg %></li>
+                  <% end %>
+              </ul>
+          </div>  
+                
+      <%end%>
+
 
     <%= yield %>
 

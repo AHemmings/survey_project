@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+select.mySelect{
+    display: block;
+}
+
+div.questionContainer{
+    padding: 2em;
+}
+
+button.free{
+    margin: 20px;
+}
+button.fixed{
+    margin: 20px;
+}
+
+div.error{
+    width: 80%;
+    margin: 0 auto;
+}
+
+div.card{
+    margin: 0 auto;
+    width:60%;
+}

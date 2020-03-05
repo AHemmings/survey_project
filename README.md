@@ -43,9 +43,9 @@ Acceptance Criteria:
 
 ## Checklist
 
-- [ ] list surveys on surveys index route `/surveys`
-- [ ] create a new survey
-- [ ] edit an existing survey
-- [ ] list questions for a survey on survey questions index route `/surveys/:survey_id/survey_questions`
-- [ ] create a new survey question tied to a survey
-- [ ] edit an existing survey question tied to a survey
+- [x] list surveys on surveys index route `/surveys`
+- [x] create a new survey
+- [x] edit an existing survey
+- [x] list questions for a survey on survey questions index route `/surveys/:survey_id/survey_questions`
+- [x] create a new survey question tied to a survey
+- [x] edit an existing survey question tied to a survey

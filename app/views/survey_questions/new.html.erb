@@ -1,6 +1,38 @@
 <div class="row">
-  <div class="col s12 m6">
-    <h4>New Survey Question</h4>
+  <div class="col s8">
+    <h4 class="center">Add a new question to the <%=@survey.name.capitalize%> survey </h4>
+    <%= form_for @question, url: survey_survey_questions_path(@survey.id), method: :post do |f|%>
+      <button class="fixed waves-effect waves-light btn red col s5">For fixed response</button> <button class="free waves-effect waves-light btn blue col s5">For free response</button>
+        <div class="row">
+            <div class="mySelect col s3">
+                  Order: <select class="mySelect"   >
+                        <%if @survey.survey_questions.length > 0 %>
+                          <%@survey.survey_questions.each_with_index do |question, index|%>
+                            <option value="<%=index + 1%>"  ><%=index + 1%></option>
 
+                            <%if index + 1 == @questions.length%>
+                                <option value="<%=index + 2%>" selected  ><%=index + 2%></option>
+
+                            <% end %>
+                          <% end%>
+                          <%else%>
+                            <option value="1" selected >1</option>
+
+                          <%end%>
+
+                          
+
+
+                      </select>
+              </div>
+
+          <div class="questionContainer col s9"></div>
+        </div>
+      <br>
+      <br>
+      <div class="center">
+        <%=f.submit class: "free waves-effect waves-light btn blue"%>
+      </div>
+    <% end %>
   </div>
 </div>

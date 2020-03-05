@@ -1,6 +1,22 @@
 <div class="row">
-  <div class="col s12 m6">
-    <h4>New Survey</h4>
+    <div class="col s8">
+        <h4 class="center">New Survey</h4>      
+        <div> <button class="add_question btn-floating btn-large waves-effect waves-light blue right"><i class="material-icons">add</i></button></div>
+          <%=form_for @survey,class: "row" do |f|%>
+            
+              <div class="input-field col s12">
+                  <%=f.text_field :name, class: "validate"%>
+                  <%=f.label :name%>
+              </div>
+            
+              <%# clicking on the button will display the question options %>
+              <div class="questionContainer cols s12"></div>
+              <br>
+              <br>
+              <div class="center">
+                <%=f.submit class:"btn-large waves-effect waves-light blue"%>
+              </div>
+          <% end %>
 
-  </div>
+    </div>
 </div>

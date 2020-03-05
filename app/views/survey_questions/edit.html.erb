@@ -1,6 +1,52 @@
 <div class="row">
-  <div class="col s12 m6">
-    <h4>Edit Survey Question</h4>
+  <div class="col s8">
+      <h4 class="center">Edit Survey Question</h4>
+      <%= form_for @question, url: "/surveys/#{@survey.id}/survey_questions/#{@question.id}", method: :patch do |f|%>
 
+    <%# the question and question_id make the @question variable availabe in our edit_single_question.js file %>
+            <div class="row">
+                <div class="mySelect col s2">
+                        Order: <select class="mySelect"   name="survey_question[questions1][order]">
+                          <%@survey.survey_questions.order(:order).each_with_index do |question, index|%>
+                            <option value="<%=index + 1%>"  <%=(index + 1).to_s == @question.order ? selected="selected" : nil %> ><%=index + 1%></option>
+                          <% end%>
+                      </select>
+                </div>
+                <div class="col s10">
+                    <% if @question.is_fixed %>
+                        <button class="toggle_free_fixed waves-effect waves-light btn blue">Expect free response?</button>
+                    
+                      <div class="div_edit_question col s12" question="<%=@question.question%>" question_id="<%=@question.id%>" options="<%= @question.question_options.map {|i| {"option_text": i.option_text,"id": i.id} }.to_json%>">
+                          <label class="labelForFixed">Question for fixed response</label>
+                            <textarea placeholder="Enter your question here" name="survey_question[questions1][question]" ><%=@question.question%></textarea>    
+                            <%@question.question_options.each do |option| %>
+                                <input name="survey_question[questions1][options][<%= option.id%>]" value="<%=option.option_text%>" >
+                            <% end %>
+                            <div class="optionContainer"></div>
+                            <div class ="buttonHolder"><button class="moreOptions waves-effect waves-light btn blue right ">More options</button></div>
+                      </div>
+
+              
+                    <%else%>                    
+                      <button class="toggle_free_fixed waves-effect waves-light btn blue">Expect fixed response?</button>
+                      <br>
+                      
+                      <div class="div_edit_question cols s12" question="<%=@question.question%>" question_id="<%=@question.id%>"  >
+                          <label>Question for free response</label>
+                          <textarea name="survey_question[questions][question]" placeholder="Enter your question here" ><%=@question.question %></textarea>
+                      </div>
+                  <%end%>
+
+                  <div class="optionContainer"></div>
+                  <div class ="buttonHolder"></div>
+
+            </div>
+          </div>
+              <br>
+              <br>
+            <div class='center'>
+              <%=f.submit class:"btn-large waves-effect waves-light yellow center"%>
+            </div>
+        <% end %>
   </div>
 </div>

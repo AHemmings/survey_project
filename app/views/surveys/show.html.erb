@@ -1,0 +1,37 @@
+<div>
+    <h4 class="center">This is what your survey will look like</h4>
+    <div class="links row">
+        <h6>Helpful links:</h6>
+        <%= link_to 'Edit', edit_survey_path(@survey),class:"cols s4" %> | <%= link_to 'Add a new question', new_survey_survey_question_path(@survey),class:"cols s4" %>|  <%= link_to "You have created #{pluralize(@survey.survey_questions.size,"question")}  for the #{@survey.name.capitalize} survey" , survey_survey_questions_path(@survey),class:"cols s4" %>
+    </div>
+
+    <div class="surveyShow">
+
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4 center"> <%=@survey.name.capitalize%></span>
+            
+                <% @survey.survey_questions.order(:order).each do |question|%>
+
+                    <% if question.is_fixed %> 
+                        <h5><span><%=question.order%>. </span><%= question.question %> </h5>
+                        <div class="input-field col s12">
+                        <select class="mySelect">
+                            <% question.question_options.each do |option| %>
+                                <option value=<%=option.option_text%> > <%= option.option_text%> </option> 
+                            <% end %>
+                        </select> 
+                        </div>  
+                        
+
+                    <% else %>
+
+                        <h5><span><%=question.order%>. </span><%= question.question %> </h5>
+                        <textarea placeholder="Enter your answer here"></textarea>
+
+                    <% end %>
+                <% end %>
+            </div>
+            </div>
+    </div>
+<div>
