@@ -8,6 +8,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+    <%# suggestion: js can be configured on individual views rather than doing a check globally, you could use `content_for :page_scripts` %>
     <%# load the js file depending on the path and the available variables %>
     <%=  (request.original_url ==root_url + "surveys/new" || request.original_url ==root_url + "surveys" ) ? ( javascript_pack_tag 'form.js', 'data-turbolinks-track': 'reload') : nil %>
     <%=  (@survey && request.original_url ==root_url + "surveys/#{@survey.id}/survey_questions/new" )? (javascript_pack_tag 'question.js', 'data-turbolinks-track': 'reload') : nil %>

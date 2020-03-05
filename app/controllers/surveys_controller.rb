@@ -11,12 +11,16 @@ class SurveysController < ApplicationController
     flash[:errors] = []
     #In this code let's agree that 'questions1' represent the question for the fixed answer 
     #And 'questions' represent the question for the free answer
+    
+    # suggestion: looks like a lot of old or stale code in this controller that should be cleaned up, things like questions and ordering
 
     # create survey
     @survey = Survey.new(name: survey_params[:name])
     #  @survey.errors.full_messages.each{|msg| flash[:errors]  << msg} if @survey.errors.any?
 
-     flash[:errors] << "Surveys must have a name" if @survey.name == ""
+    flash[:errors] << "Surveys must have a name" if @survey.name == ""
+    # suggestion: use model validation such as `validates :name, presence: true`
+    # @survey.errors will have values set when a validation fails
 
     #Let's get an array of all the order 
     orders = []

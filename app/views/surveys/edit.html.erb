@@ -13,6 +13,8 @@
                       <% if survey_question.is_fixed %>
                     
                         <div class="mySelect col s3">
+                          <%# suggestion: instead of manually setting the form input names, use simple_form to manage it %>
+                          <%# suggestion: create a survey_question partial that can be reused between this form and the survey_questions forms %>
                             Order: <select class="mySelect" name="survey[questions1][][<%=survey_question.id%>][order]"  >
                                     <%@survey.survey_questions.each_with_index do |question, index|%>
                                       <option value="<%=index + 1%>" <%=(index + 1).to_s == survey_question.order ? selected="selected" : nil %>  ><%=index + 1%></option>

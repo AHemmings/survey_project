@@ -4,7 +4,7 @@ class CreateSurveyQuestions < ActiveRecord::Migration[6.0]
       t.text :question
       t.string :order
       t.boolean :is_fixed, default: false
-      t.integer :survey_id
+      t.integer :survey_id # suggestion: use t.belongs_to :survey
       t.integer :question_option_id
       t.timestamps
     end
