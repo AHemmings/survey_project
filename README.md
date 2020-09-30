@@ -2,6 +2,8 @@
 
 ## Install (nothing special)
 
+fork or clone
+
 - `git clone https://github.com/ahemmings/survey_project`
 - Make sure your Ruby environment is set up and configure `database.yml` to point to your MySQL instance for development.
 - Run `bundle install` as you do.
